@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: "postgres"
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=memchat
+      - POSTGRES_PASSWORD=memchat
+      - POSTGRES_DB=memchat-db
+    volumes:
+      - memchat-db-data:/var/lib/postgresql/data/
+    ports:
+      - 5434:5432
+
+  # adminer:
+  #   image: adminer
+  #   restart: on-failure
+  #   ports:
+  #     - 8080:8080
+
+  # redis:
+  #   image: redis:6.2-alpine
+  #   restart: on-failure
+  #   ports:
+  #     - '6379:6379'
+  #   command: redis-server --save 20 1 --loglevel warning --requirepass questpie
+  #   volumes:
+  #     - redis-data:/data
+
+volumes:
+  memchat-db-data:
+  # redis-data:
